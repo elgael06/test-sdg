@@ -5,4 +5,6 @@ export enum pathName {
   login = '/login',
   register = '/register',
   cocktails = '/cocktails',
+  cocktailId = '/cocktails/:id',
+  cocktailsCat = '/cocktails/cateories',
 }

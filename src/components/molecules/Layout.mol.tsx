@@ -1,6 +1,9 @@
 import { Outlet } from "react-router";
 import { Suspense, lazy } from "react";
 import styled from "styled-components";
+import { FaWindowClose } from 'react-icons/fa'
+import { Alert, Button, IconButton } from "@mui/material";
+import { alertStore } from "../../store/alert.store";
 
 
 const Content = styled.div`
@@ -23,9 +26,23 @@ const Content = styled.div`
 const AppBarAtom = lazy(() => import("../atoms/AppBar.atom"));
 
 const LayoutMol = () => {
+  const { title, type, isVisible } = alertStore(store => store.values);
+  const onClose = alertStore(store => store.onClose);
 
   return <Suspense>
       <AppBarAtom />
+    {isVisible && <Alert action={
+      <IconButton
+        aria-label="close"
+        color="inherit"
+        size="small"
+        onClick={onClose}
+      >
+        <Button color="inherit" size="small">
+          <FaWindowClose />
+        </Button>
+      </IconButton>
+  } severity={type}>{ title }</Alert>}
       <Content>
       <Outlet /> 
       </Content>
