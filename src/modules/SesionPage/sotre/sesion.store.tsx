@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { ISesion, ISesionStore } from "../interfaces/ISesion";
+import { IRegisterStore, ISesion } from "../../../interfaces/ISesion";
 
 const initialDataSesion: ISesion = {
   name: '',
@@ -8,15 +8,8 @@ const initialDataSesion: ISesion = {
   phone: '',
 } 
 
-export const sesionStore = create<ISesionStore>((set, get) => ({
+export const registerStore = create<IRegisterStore>((set, get) => ({
   values: initialDataSesion,
-  isActive: false,
-  onSingIn(values) {
-      set({ isActive: true, values })
-  },
-  onSingOut() {
-    set({ isActive: false, values: {...initialDataSesion} })
-  },
   changeValue(key, value) {
     const { values } = get();
     set({

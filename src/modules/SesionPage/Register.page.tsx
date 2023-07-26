@@ -1,18 +1,21 @@
 
 import { Content } from "./loginStyled";
 import { useForm } from "react-hook-form";
-import { InputKey } from "./interfaces/ISesionProps";
+import useRegister from "./hooks/useRegister.hook";
+import { registerStore } from "./sotre/sesion.store";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { sesionStore } from "../../store/sesion.store";
 import { SesionPropsType } from "../../interfaces/ISesion";
+import LoadingPage from "../../components/pages/Loading.page";
+import { ISesionProps, InputKey } from "./interfaces/ISesionProps";
 import usePasswordValidator from "../../hook/usePasswordValidator.hook";
 import { Button, Card, CardContent, CardMedia, TextField, Typography } from "@mui/material";
 import { registerFormSchema, registerFormSchemaValidator } from "../../schema/register-form.schema";
 
 const RegisterPage = () => {
-  const { values } = sesionStore();
+  const { values } = registerStore();
+  const { save, isLoading } = useRegister();
   const { handleChange: handleChangePasword, ...password } = usePasswordValidator();
-  const handleChange = sesionStore(store => store.changeValue);
+  const handleChange = registerStore(store => store.changeValue);
   const {
     register,
     handleSubmit,
@@ -26,7 +29,8 @@ const RegisterPage = () => {
 
   const submit = handleSubmit(() => {
     const data = watch();
-    console.log('guardar', {...data});
+    console.log('guardar', { ...data });
+    save({ ...values, } as ISesionProps);
   });
 
   const inputsValue = (key: SesionPropsType) => register(key, {
@@ -96,9 +100,9 @@ const RegisterPage = () => {
     </CardContent>
     <Content>
       <Button size="small" variant='contained' type="submit" >Guardar</Button>
-      <Button size="small" type='reset' >Borrar</Button>
     </Content>
     </Card>
+    { isLoading && <LoadingPage title="Guardando registro..." /> }
   </form>);
 }
 

@@ -9,9 +9,13 @@ export interface ISesion {
   email: string;
 }
 
-export interface ISesionStore extends FormStore<SesionPropsType, ISesion> {
-  values: ISesion;
+
+export interface IRegisterStore extends FormStore<SesionPropsType, ISesion> {
+  values: ISesion; 
+}
+
+export interface ISesionStore extends IRegisterStore {
   isActive: boolean;
-  onSingIn: () => void;
-  onSingOut: () => void; 
+  onSingIn: (values: ISesion) => void;
+  onSingOut: () => void;
 }
