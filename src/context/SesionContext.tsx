@@ -1,9 +1,9 @@
 import { createContext } from "react";
 import IFormContext from "../interfaces/IFormContext";
-import { SesionPropsType } from "../modules/SesionPage/interfaces/ISesionProps";
+import { ISesionProps } from "../modules/SesionPage/interfaces/ISesionProps";
 
 
-export const SesionContext = createContext<IFormContext<SesionPropsType>>({
+export const SesionContext = createContext<IFormContext<ISesionProps>>({
   inputReg: (key) => ({}),
   errors: {},
   isLoading: false,
