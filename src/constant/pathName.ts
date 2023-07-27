@@ -7,4 +7,5 @@ export enum pathName {
   cocktails = '/cocktails',
   cocktailId = '/cocktails/:id',
   cocktailsCat = '/cocktails/cateories',
+  cocktailsCatId = '/cocktails/cateories/:id',
 }
