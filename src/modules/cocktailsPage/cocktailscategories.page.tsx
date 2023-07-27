@@ -11,7 +11,7 @@ const Content = styled(Grid)`
   -ms-flex-direction: row;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   height: calc(100% - 100px);
   overflow: auto;
 `

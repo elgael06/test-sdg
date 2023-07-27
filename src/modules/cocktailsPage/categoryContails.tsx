@@ -27,9 +27,10 @@ const Title = styled(Typography)(({ theme }) => ({
 const Item = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
-  textAlign: 'left',
+  textAlign: 'center',
   color: theme.palette.text.secondary,
-  flexGrow: 0,
+  flexGrow: 1,
+  margin: 5,
 }));
 
 const CategoryCoktails = ({ category }: CategoryCoktailsProps) => {
@@ -43,20 +44,26 @@ const CategoryCoktails = ({ category }: CategoryCoktailsProps) => {
     <br />
     <Stack
       direction="row"
-      flexWrap="nowrap"
+      flexWrap="wrap"
       justifyContent='center'
-      spacing={2}
+      spacing={0}
     >
       {isLoading ? 'Cargando...' :
-        data?.filter((_, id) => id < 4)?.map(item => (<Item sx={{ maxWidth: 165, }} title={item.strDrink} key={item.idDrink} >
+        data?.filter((_, id) => id < 4)?.map(item => (<Item title={item.strDrink} key={item.idDrink} >
             <CardMedia
               sx={{ height: 100, minWidth:100 }}
               image={item.strDrinkThumb}
               title={item.strDrink}
             />
-            <CardActions>
-              <Link to={pathName.cocktailId.replace(':id', item.idDrink)}>Ver</Link>
-            </CardActions>
+          {/* <CardActions> */}
+            <Stack
+              direction="row"
+              flexWrap="nowrap"
+              style={{paddingRight: 10}}
+              justifyContent='flex-end'>
+                <Link to={pathName.cocktailId.replace(':id', item.idDrink)}>Ver</Link>
+            </Stack>
+            {/* </CardActions> */}
         </Item>
         ))
       }
