@@ -7,6 +7,7 @@ import LoadingPage from "../components/pages/Loading.page";
 
 const HomePage = lazy(() => import('../modules/HomePage/Home.page'))
 const LoginPage = lazy(() => import('../modules/SesionPage/Login.page'))
+const DataPage = lazy(() => import('../modules/dataTablePage/Data.page'))
 const LayoutMol = lazy(() => import('../components/molecules/Layout.mol'))
 const RegisterPage = lazy(() => import('../modules/SesionPage/Register.page'))
 const ConcktailsPage = lazy(() => import('../modules/cocktailsPage/Concktails.page'))
@@ -25,6 +26,7 @@ const RoutesApp = () => {
         <Route element={<ConcktailsPage />} path={pathName.cocktails} />
         <Route element={<CocktailsView />} path={pathName.cocktailId} />
         <Route element={<CocktailscategoriesPage />} path={pathName.cocktailsCat} />
+        <Route element={<DataPage />} path={pathName.data} />
         
         <Route element={<ErrorPage />} path="/*" />
       </Route>
